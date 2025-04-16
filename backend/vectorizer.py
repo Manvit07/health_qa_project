@@ -28,7 +28,7 @@ class PDFQAEngine:
         words = text.split()
         return [' '.join(words[i:i+size]) for i in range(0, len(words), size)]
 
-    def query(self, question, top_k=3):
+    def query(self, question, top_k=1):
         q_vec = self.model.encode([question])
         D, I = self.index.search(np.array(q_vec), top_k)
         return [self.chunks[i] for i in I[0]]
